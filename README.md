@@ -71,16 +71,16 @@
 
 ### 安装运行
 
-#### 方式一：直接运行（推荐）
+#### 方式一：构建项目
 
 - 克隆仓库
 ```bash
 git clone https://github.com/Failure-ai/VideoParsing.git --recursive
 ```
-- 使用vs2022打开项目 Video Parsing.slnx文件
+- 使用vs2022打开项目 Video Parsing.slnx 文件
 
 
-#### 方式二：使用发布版本
+#### 方式二：使用发布版本（推荐）
 - 下载发布版本：[VideoParsing-1.2.0.zip](https://github.com/Failure-ai/VideoParsing/releases/tag/1.2.0)
 - 解压文件到任意目录，双击 `VideoParsing.exe` 即可运行
 
