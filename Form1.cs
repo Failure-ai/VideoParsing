@@ -27,6 +27,9 @@ public partial class Form1 : Form
     private static readonly string[] TempFilePrefixes = { "VideoParsing_Play_", "video_", "VideoParsing_Merge_" };
     private const int TempFileMaxAgeHours = 24;
 
+    // 任务状态追踪
+    private bool _isTaskRunning = false;
+
     public Form1()
     {
         InitializeComponent();
@@ -46,8 +49,28 @@ public partial class Form1 : Form
         
         LoadData();
         
-        // 关闭时清理临时文件
-        this.FormClosing += (s, e) => CleanupTempFiles();
+        // 关闭时检查是否有任务在执行
+        this.FormClosing += (s, e) => 
+        {
+            if (_isTaskRunning)
+            {
+                var result = MessageBox.Show(
+                    "⚠️ 当前有任务正在执行（转码/导出/整合）\n\n" +
+                    "强制关闭可能导致数据损坏或文件不完整。\n\n" +
+                    "确定要关闭吗？",
+                    "确认关闭",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+                
+                if (result == DialogResult.No)
+                {
+                    e.Cancel = true;
+                    return;
+                }
+            }
+            
+            CleanupTempFiles();
+        };
     }
 
     private void InitializeCustomComponents()
@@ -221,6 +244,8 @@ public partial class Form1 : Form
     {
         if (_currentRawFile == null) return;
         
+        _isTaskRunning = true;
+        
         // 保存当前状态，避免影响导出进度条
         bool wasProgressBarVisible = _progressBar.Visible;
         string previousStatusText = _lblStatus.Text;
@@ -250,6 +275,8 @@ public partial class Form1 : Form
         catch (Exception ex) { MessageBox.Show($"播放失败: {ex.Message}", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         finally 
         { 
+            _isTaskRunning = false;
+            
             // 只恢复到之前的状态，不强制隐藏
             if (!wasProgressBarVisible)
                 _progressBar.Visible = false;
@@ -301,6 +328,7 @@ public partial class Form1 : Form
         _progressBar.Visible = true; _progressBar.Value = 0;
         _btnExport.Enabled = false;
         _lblStatus.Text = $"正在导出 {selectedFiles.Count} 个文件...";
+        _isTaskRunning = true;
 
         Directory.CreateDirectory(outputDir);
 
@@ -362,6 +390,7 @@ public partial class Form1 : Form
 
         _progressBar.Visible = false;
         _btnExport.Enabled = true;
+        _isTaskRunning = false;
         
         if (failed > 0)
             _lblStatus.Text = $"完成: {done - failed}/{selectedFiles.Count} ({failed}个失败)";
@@ -376,6 +405,7 @@ public partial class Form1 : Form
     {
         _progressBar.Visible = true; _progressBar.Value = 0;
         _btnExport.Enabled = false;
+        _isTaskRunning = true;
 
         // 创建整合文件夹
         string mergeDir = Path.Combine(outputDir, "整合");
@@ -441,6 +471,7 @@ public partial class Form1 : Form
 
             _progressBar.Visible = false;
             _btnExport.Enabled = true;
+            _isTaskRunning = false;
 
             if (mergeSuccess)
             {
@@ -460,6 +491,7 @@ public partial class Form1 : Form
         {
             _progressBar.Visible = false;
             _btnExport.Enabled = true;
+            _isTaskRunning = false;
             _lblStatus.Text = "整合出错";
             MessageBox.Show($"整合过程出错: {ex.Message}", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }

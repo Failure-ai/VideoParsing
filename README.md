@@ -1,7 +1,7 @@
 # 🎬 VideoParsing - 视频解析工具
 
 [![.NET](https://img.shields.io/badge/.NET-10.0-purple.svg)](https://dotnet.microsoft.com/download/dotnet/10.0)
-[![Platform](https://img.shields.io/badge/Platform-Windows-blue.svg)](https://www.microsoft.com/windows)
+
 
 **解析自定义 MO_V 容器格式的视频文件 → 转码为 H.264 MP4 → 软件内播放**
 
@@ -75,7 +75,7 @@ dotnet build -c Release
 dotnet run --no-build
 ```
 
-#### 方式二：发布独立版本
+#### 方式二：使用发布版本
 ```bash
 # 发布为单文件应用（包含所有依赖）
 dotnet publish -c Release -r win-x64 --self-contained true /p:PublishSingleFile=true
@@ -234,6 +234,6 @@ Video Parsing/
 
 <div align="center">
 
-**如果这个项目对你有帮助，请给一个 ⭐ Star！**
+**如果这个项目对你有帮助请自己维护吧**
 
 </div>
