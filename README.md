@@ -8,6 +8,15 @@
 专为 **4G低功耗摄像头** 存储卡视频数据设计的解析与转换工具。
 
 ---
+## 注意:
+- 本项目99%的代码都是ai生成的，且没有仔细查看过代码，可能存在问题！！
+- 本工具是个人使用，不保证负责任何问题或损失。
+- 这个不一定能支持你的所有视频文件。
+- 做这个工具是因为摄像头的存储卡里不是那种能直接播放的视频文件，所以才做的这个工具。发布github上是为了操作系统后方便使用
+- 目前支持视云摄像头的视频文件。(因为我就是这个摄像头)
+- 除了这个"注意:"，其他介绍都是ai生成(因为懒✨)
+
+---
 
 ## ✨ 功能特性
 
@@ -55,34 +64,26 @@
 ## 🚀 快速开始
 
 ### 环境要求
-- **操作系统**: Windows 10/11 (x64)
+- **操作系统**: Windows 10(x64)
 - **运行时**: .NET 10.0 Desktop Runtime
 - **依赖**: FFmpeg (程序可自动下载)
 
 ### 安装运行
 
 #### 方式一：直接运行（推荐）
+
+- 克隆仓库
 ```bash
-# 克隆仓库
-git clone https://github.com/Failure-ai/VideoParsing.git
-cd Video\ Parsing
-
-# 还原依赖并构建
-dotnet restore
-dotnet build -c Release
-
-# 运行
-dotnet run --no-build
+git clone https://github.com/Failure-ai/VideoParsing.git --recursive
 ```
+- 使用vs2022打开项目 Video Parsing.slnx文件
+
 
 #### 方式二：使用发布版本
-```bash
-# 发布为单文件应用（包含所有依赖）
-dotnet publish -c Release -r win-x64 --self-contained true /p:PublishSingleFile=true
+- 下载发布版本：[VideoParsing-1.2.0.zip](https://github.com/Failure-ai/VideoParsing/releases/tag/1.2.0)
+- 解压文件到任意目录，双击 `VideoParsing.exe` 即可运行
 
-# 运行发布后的exe
-.\bin\Release\net10.0-windows\win-x64\publish\Video Parsing.exe
-```
+---
 
 ### 首次使用
 1. 启动程序后点击 **"📁 选择文件夹"**
@@ -118,13 +119,6 @@ rawdata/
 │ [0x14] HEVC视频数据...              │
 └──────────────────────────────────────┘
 ```
-
-### 视频参数
-- **编码格式**: HEVC/H.265 Main Profile
-- **分辨率**: 1920×1080 (Full HD)
-- **帧率**: ~15 fps
-- **像素格式**: yuv420p
-- **音频**: ❌ 无音频轨道（仅视频）
 
 ---
 
