@@ -1,0 +1,52 @@
+## .gitignore for Video Parsing Project
+
+# === Visual Studio ===
+.vs/
+*.user
+*.suo
+*.cache
+*.dll
+*.pdb
+*.exe
+
+# === Build Outputs ===
+bin/
+obj/
+publish/
+
+# === NuGet ===
+packages/
+*.nupkg
+
+# === User specific files ===
+*.rsuser
+*.sln.docstates
+
+# === IDE ===
+.idea/
+*.swp
+*.swo
+*~
+
+# === OS ===
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# === Logs ===
+*.log
+logs/
+
+# === Temp files ===
+tmp/
+temp/
+*.tmp
+*.temp
+
+# === FFmpeg binaries (too large for git, users download via app) ===
+ffmpeg.exe
+ffprobe.exe
+ffplay.exe
+
+# === Debug/Release (keep structure but ignore builds) ===
+!bin/.gitkeep
