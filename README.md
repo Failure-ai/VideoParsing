@@ -2,7 +2,6 @@
 
 [![.NET](https://img.shields.io/badge/.NET-10.0-purple.svg)](https://dotnet.microsoft.com/download/dotnet/10.0)
 [![Platform](https://img.shields.io/badge/Platform-Windows-blue.svg)](https://www.microsoft.com/windows)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 **解析自定义 MO_V 容器格式的视频文件 → 转码为 H.264 MP4 → 软件内播放**
 
@@ -206,58 +205,6 @@ Video Parsing/
 
 ---
 
-## 🔒 隐私安全
-
-### ✅ 已检查项
-- ❌ **无硬编码路径**: 默认路径改为动态获取
-- ❌ **无个人信息**: 不包含用户名、邮箱等
-- ❌ **无API密钥**: 无第三方服务调用
-- ❌ **无日志泄露**: Debug输出仅限开发环境
-- ✅ **本地运行**: 所有数据处理在本地完成
-- ✅ **开源透明**: 代码完全公开可审计
-
-### 数据安全
-- 所有操作在用户本地执行
-- 不上传任何数据到远程服务器
-- 临时文件存储在系统Temp目录
-- 支持自定义输出目录
-
----
-
-## 🛠️ 开发指南
-
-### 构建环境
-- **IDE**: Visual Studio 2022 / JetBrains Rider
-- **SDK**: .NET 10.0 SDK
-- **框架**: WinForms (Windows Desktop)
-- **目标平台**: x64
-
-### 常用命令
-```bash
-# 还原依赖
-dotnet restore
-
-# 调试构建
-dotnet build -c Debug
-
-# 发布构建
-dotnet build -c Release
-
-# 运行测试（如果有）
-dotnet test
-
-# 清理
-dotnet clean
-```
-
-### 代码规范
-- 使用 C# 12 特性（主构造函数、集合表达式等）
-- 遵循 Microsoft 命名规范（PascalCase）
-- 异步方法以 Async 结尾
-- 公共API添加XML文档注释
-
----
-
 ## 📝 更新日志
 
 ### v1.2.0 (2026-05-24)
@@ -285,65 +232,8 @@ dotnet clean
 
 ---
 
-## 🤝 贡献指南
-
-欢迎提交 Issue 和 Pull Request！
-
-### 提交Issue
-1. 使用清晰的标题描述问题
-2. 提供复现步骤和环境信息
-3. 附上截图或日志（如有）
-
-### Pull Request
-1. Fork 本仓库
-2. 创建特性分支 (`git checkout -b feature/amazing-feature`)
-3. 提交更改 (`git commit -m 'Add amazing feature'`)
-4. 推送到分支 (`git push origin feature/amazing-feature`)
-5. 创建 Pull Request
-
----
-
-## 📄 许可证
-
-本项目基于 [MIT License](LICENSE) 开源。
-
-```
-MIT License
-
-Copyright (c) 2026 Failure-ai
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-```
-
----
-
-## 🙏 致谢
-
-- [FFmpeg](https://ffmpeg.org/) - 强大的多媒体处理框架
-- [.NET](https://dotnet.microsoft.com/) - 现代化开发平台
-- 所有贡献者和使用者
-
----
-
-## 📧 联系方式
-
-- **GitHub Issues**: [提交问题](https://github.com/Failure-ai/VideoParsing/issues)
-- **项目地址**: https://github.com/Failure-ai/VideoParsing
-
----
-
 <div align="center">
 
 **如果这个项目对你有帮助，请给一个 ⭐ Star！**
-
-Made with ❤️ by [Failure-ai](https://github.com/Failure-ai)
 
 </div>
