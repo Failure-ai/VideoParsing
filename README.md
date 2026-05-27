@@ -1,4 +1,4 @@
-<img width="286" height="189" alt="image" src="https://github.com/user-attachments/assets/e5f0c7ac-7c2a-4e7b-ad51-7f9e6c76dd2e" /># 🎬 VideoParsing - 视频解析工具
+# 🎬 VideoParsing - 视频解析工具
 
 [![.NET](https://img.shields.io/badge/.NET-10.0-purple.svg)](https://dotnet.microsoft.com/download/dotnet/10.0)
 
