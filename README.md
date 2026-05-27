@@ -21,11 +21,10 @@
 
 ## 📸 界面预览
 
-```
-1.2.1主页面<img width="884" height="692" alt="image" src="https://github.com/user-attachments/assets/b44ef139-1c34-4fd5-a4b8-b187e590b034" />
-1.2.1分析页面<img width="1184" height="812" alt="image" src="https://github.com/user-attachments/assets/f6e2b728-8569-4a8d-bd34-9523e13f654f" />
-
-```
+1.2.1主页面
+<img width="884" height="692" alt="image" src="https://github.com/user-attachments/assets/b44ef139-1c34-4fd5-a4b8-b187e590b034" />
+1.2.1分析页面
+<img width="1184" height="812" alt="image" src="https://github.com/user-attachments/assets/f6e2b728-8569-4a8d-bd34-9523e13f654f" />
 
 ---
 
@@ -48,7 +47,7 @@ git clone https://github.com/Failure-ai/VideoParsing.git --recursive
 
 
 #### 方式二：使用发布版本（推荐）
-- 下载发布版本：[VideoParsing-1.2.x.zip](https://github.com/Failure-ai/VideoParsing/releases/tag)
+- 下载发布版本：[VideoParsing-1.2.x.zip](https://github.com/Failure-ai/VideoParsing/releases)
 - 解压文件到任意目录，双击 `VideoParsing.exe` 即可运行
 
 ---
