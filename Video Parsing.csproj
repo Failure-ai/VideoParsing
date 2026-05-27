@@ -6,10 +6,16 @@
     <RootNamespace>Video_Parsing</RootNamespace>
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <ImplicitUsings>enable</ImplicitUsings>
     <ApplicationHighDpiMode>SystemAware</ApplicationHighDpiMode>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <RestorePackagesPath>C:\Users\Administrator\.nuget\packages</RestorePackagesPath>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="OpenCVSharp4" Version="4.9.0.20241129" />
+    <PackageReference Include="OpenCVSharp4.runtime.win" Version="4.9.0.20241129" />
+  </ItemGroup>
 
 </Project>

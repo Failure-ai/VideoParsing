@@ -13,6 +13,7 @@ public partial class Form1 : Form
     private Button _btnExport = null!;
     private Button _btnPlay = null!;
     private Button _btnSetupFfmpeg = null!;
+    private Button _btnMotionDetect = null!;
     private ProgressBar _progressBar = null!;
     private Label _lblStatus = null!;
 
@@ -101,16 +102,27 @@ public partial class Form1 : Form
         
         _btnSetupFfmpeg = new Button
         {
-            Text = _ffmpeg.IsAvailable ? "✓ FFmpeg已就绪" : "⚠ 安装FFmpeg",
-            Location = new Point(this.Width - 165, 3), Size = new Size(150, 27),
+            Text = _ffmpeg.IsAvailable ? "✓ FFmpeg" : "⚠ 安装FFmpeg",
+            Location = new Point(this.Width - 115, 3), Size = new Size(105, 27),
             Anchor = AnchorStyles.Top | AnchorStyles.Right,
             BackColor = _ffmpeg.IsAvailable ? Color.FromArgb(100, 180, 100) : Color.FromArgb(220, 100, 80),
             ForeColor = Color.White, FlatStyle = FlatStyle.Flat, Font = new Font("Microsoft YaHei", 9F)
         };
         _btnSetupFfmpeg.FlatAppearance.BorderSize = 0;
         _btnSetupFfmpeg.Click += BtnSetupFfmpeg_Click;
+
+        _btnMotionDetect = new Button
+        {
+            Text = "🔍 运动侦察",
+            Location = new Point(this.Width - 230, 3), Size = new Size(108, 27),
+            Anchor = AnchorStyles.Top | AnchorStyles.Right,
+            BackColor = Color.FromArgb(140, 90, 170),
+            ForeColor = Color.White, FlatStyle = FlatStyle.Flat, Font = new Font("Microsoft YaHei", 9F)
+        };
+        _btnMotionDetect.FlatAppearance.BorderSize = 0;
+        _btnMotionDetect.Click += BtnMotionDetect_Click;
         
-        topPanel.Controls.AddRange([_btnSelectFolder, _lblFolder, _btnSetupFfmpeg]);
+        topPanel.Controls.AddRange([_btnSelectFolder, _lblFolder, _btnMotionDetect, _btnSetupFfmpeg]);
         this.Controls.Add(topPanel);
 
         // === 主内容区 ===
@@ -587,5 +599,11 @@ public partial class Form1 : Form
         _btnSetupFfmpeg.Enabled = true;
         _btnSetupFfmpeg.Text = ok ? "✓ FFmpeg已就绪" : "⚠ 安装FFmpeg";
         _btnSetupFfmpeg.BackColor = ok ? Color.FromArgb(100, 180, 100) : Color.FromArgb(220, 100, 80);
+    }
+
+    private void BtnMotionDetect_Click(object? s, EventArgs e)
+    {
+        using var form = new MotionDetectForm(_ffmpeg);
+        form.ShowDialog(this);
     }
 }
