@@ -40,9 +40,9 @@ public class MotionDetectForm : Form
     private void InitializeComponent()
     {
         this.Text = "运动侦察 - DVR-Scan 模式";
-        this.Size = new Size(1100, 800);
+        this.Size = new Size(1200, 820);
         this.StartPosition = FormStartPosition.CenterParent;
-        this.MinimumSize = new Size(900, 650);
+        this.MinimumSize = new Size(1000, 680);
         this.Font = new Font("Microsoft YaHei", 9F);
         this.Padding = new Padding(15);
 
@@ -73,7 +73,7 @@ public class MotionDetectForm : Form
         {
             Text = "⚙️ 检测设置 (DVR-Scan MOG2 算法)",
             Location = new Point(15, 85),
-            Size = new Size(pw, 130),
+            Size = new Size(pw, 145),
             Font = new Font("Microsoft YaHei", 9.5F)
         };
 
@@ -84,16 +84,18 @@ public class MotionDetectForm : Form
         };
         _trkThreshold = new TrackBar
         {
-            Location = new Point(65, 24), Width = 250,
-            Minimum = 1, Maximum = 50, Value = 15,
+            Location = new Point(65, 24), Width = 150,
+            Minimum = 1, Maximum = 50, Value = 1,
             TickFrequency = 1, SmallChange = 1
         };
         _trkThreshold.ValueChanged += (s, e) => 
             _lblThreshold.Text = $" {_trkThreshold.Value / 100.0:F2}";
         _lblThreshold = new Label
         {
-            Text = " 0.15", Location = new Point(320, 28), Width = 55, 
-            Font = new Font("Consolas", 10F, FontStyle.Bold),
+            Text = " 0.01 - 检测灵敏度，值越小越容易检测到运动(推荐0.01-0.20)", 
+            Location = new Point(220, 28), 
+            AutoSize = true,
+            Font = new Font("Microsoft YaHei", 8.5F),
             ForeColor = Color.FromArgb(70, 140, 200)
         };
 
@@ -104,7 +106,7 @@ public class MotionDetectForm : Form
         };
         _trkFrameSkip = new TrackBar
         {
-            Location = new Point(65, 58), Width = 250,
+            Location = new Point(65, 58), Width = 150,
             Minimum = 0, Maximum = 29, Value = 0,
             TickFrequency = 1, SmallChange = 1
         };
@@ -113,39 +115,41 @@ public class MotionDetectForm : Form
             int val = _trkFrameSkip.Value;
             string desc = val switch
             {
-                0 => "(每帧都分析 - 最精确)",
-                <= 2 => $"(每{val + 1}帧分析1帧 - 较快)",
-                <= 10 => $"(每{val + 1}帧分析1帧 - 快)",
-                _ => $"(每{val + 1}帧分析1帧 - 极快)"
+                0 => "每帧都分析(最精确)",
+                <= 2 => $"每{val + 1}帧分析1帧(较快)",
+                <= 10 => $"每{val + 1}帧分析1帧(快)",
+                _ => $"每{val + 1}帧分析1帧(极快)"
             };
-            _lblFrameSkip.Text = $" {val}{desc}";
+            _lblFrameSkip.Text = $" {desc} - 分析间隔，值越大速度越快但精度降低";
         };
         _lblFrameSkip = new Label
-        {
-            Text = " 0 (每帧都分析 - 最精确)", 
-            Location = new Point(320, 62), 
-            Width = 280,
+        { 
+            Text = " 0 - 每帧都分析(最精确) - 分析间隔，值越大速度越快但精度降低", 
+            Location = new Point(220, 62), 
+            AutoSize = true,
             Font = new Font("Microsoft YaHei", 8.5F),
             ForeColor = Color.FromArgb(70, 140, 200)
         };
 
-        var lblNote = new Label
+        var lblExample = new Label
         {
-            Text = "💡 阈值: 越小越敏感(推荐0.10-0.20) | 跳帧: 越大速度越快但精度降低",
-            Location = new Point(15, 92),
-            ForeColor = Color.FromArgb(120, 120, 120),
-            Font = new Font("Microsoft YaHei", 8.5F)
+            Text = "📌 推荐设置: 短视频(<5min)用默认 | 中等视频(5min-1h)用跳帧2-5 | 长视频(>1h)用跳帧10-20 | 超长视频(>24h)用跳帧25-29",
+            Location = new Point(15, 95),
+            Size = new Size(pw - 30, 35),
+            ForeColor = Color.FromArgb(100, 100, 100),
+            Font = new Font("Microsoft YaHei", 8F)
         };
+        
         settingsGroup.Controls.AddRange(new Control[] { 
-            lblThresh, _trkThreshold, _lblThreshold, 
+            lblThresh, _trkThreshold, _lblThreshold,
             lblSkip, _trkFrameSkip, _lblFrameSkip,
-            lblNote 
+            lblExample
         });
         this.Controls.Add(settingsGroup);
 
         _btnDetect = new Button
         {
-            Text = "🔍 开始检测运动", Location = new Point(15, 230), Size = new Size(220, 48),
+            Text = "🔍 开始检测运动", Location = new Point(15, 245), Size = new Size(220, 48),
             BackColor = Color.FromArgb(70, 140, 200), ForeColor = Color.White,
             FlatStyle = FlatStyle.Flat, Font = new Font("Microsoft YaHei", 12F, FontStyle.Bold),
             Enabled = false
@@ -156,7 +160,7 @@ public class MotionDetectForm : Form
 
         _btnExport = new Button
         {
-            Text = "💾 导出运动片段", Location = new Point(250, 230), Size = new Size(220, 48),
+            Text = "💾 导出运动片段", Location = new Point(250, 245), Size = new Size(220, 48),
             BackColor = Color.FromArgb(70, 160, 70), ForeColor = Color.White,
             FlatStyle = FlatStyle.Flat, Font = new Font("Microsoft YaHei", 12F, FontStyle.Bold),
             Enabled = false
@@ -168,7 +172,7 @@ public class MotionDetectForm : Form
         var timelineGroup = new GroupBox
         {
             Text = "📊 运动时间轴 (🔴 红色=运动 | 🔵 蓝色=静止)",
-            Location = new Point(15, 290),
+            Location = new Point(15, 305),
             Size = new Size(pw, 210),
             Font = new Font("Microsoft YaHei", 9.5F)
         };
@@ -200,7 +204,7 @@ public class MotionDetectForm : Form
         var segmentsGroup = new GroupBox
         {
             Text = "📋 运动片段列表 (点击查看详情)",
-            Location = new Point(15, 515),
+            Location = new Point(15, 530),
             Size = new Size(pw, 185),
             Font = new Font("Microsoft YaHei", 9.5F)
         };
